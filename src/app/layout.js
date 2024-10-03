@@ -1,5 +1,9 @@
+import { Sheet, SheetContent, SheetTrigger } from "../components/ui/sheet";
+import { CandyIcon, MenuIcon } from "lucide-react";
 import localFont from "next/font/local";
+import Link from "next/link";
 import "./globals.css";
+import { Button } from "../components/ui/button";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,7 +27,104 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex flex-col min-h-screen px-56">
+          <header className="px-4 lg:px-6 h-14 flex items-center border-b">
+            <Link className="flex items-center justify-center" href="/">
+              <CandyIcon className="h-6 w-6 " />
+              <span className="ml-2 text-lg font-bold">Sweet Delights</span>
+            </Link>
+            <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
+              <Link className="text-sm font-medium transition-colors" href="/">
+                Home
+              </Link>
+              <Link
+                className="text-sm font-medium transition-colors"
+                href="/shop"
+              >
+                Shop
+              </Link>
+              <Link
+                className="text-sm font-medium transition-colors"
+                href="/my-orders"
+              >
+                My Orders
+              </Link>
+              <Link
+                className="text-sm font-medium transition-colors"
+                href="/about"
+              >
+                About
+              </Link>
+              <Link
+                className="text-sm font-medium transition-colors"
+                href="/contact"
+              >
+                Contact
+              </Link>
+            </nav>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="shrink-0 md:hidden"
+                >
+                  <MenuIcon className="h-5 w-5" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <nav className="flex flex-col gap-4">
+                  <Link
+                    className="text-sm font-medium transition-colors"
+                    href="/"
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    className="text-sm font-medium transition-colors"
+                    href="/shop"
+                  >
+                    Shop
+                  </Link>
+                  <Link
+                    className="text-sm font-medium transition-colors"
+                    href="/my-orders"
+                  >
+                    My Orders
+                  </Link>
+                  <Link
+                    className="text-sm font-medium transition-colors"
+                    href="/about"
+                  >
+                    About
+                  </Link>
+                  <Link
+                    className="text-sm font-medium transition-colors"
+                    href="/contact"
+                  >
+                    Contact
+                  </Link>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </header>
+
+          {children}
+          <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              © 2024 Sweet Delights. All rights reserved.
+            </p>
+            <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+              <Link className="text-xs nderline underline-offset-4" href="#">
+                Terms of Service
+              </Link>
+              <Link className="text-xs nderline underline-offset-4" href="#">
+                Privacy
+              </Link>
+            </nav>
+          </footer>
+        </div>
       </body>
     </html>
   );
